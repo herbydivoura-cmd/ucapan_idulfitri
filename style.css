@@ -1,0 +1,263 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+  color: black;
+  text-align: center;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.title {
+  font-size: 30px;
+  animation: fadeIn 3s ease-in-out;
+  color: white;
+}
+
+.text {
+  font-size: 20px;
+  animation: fadeIn 5s ease-in-out;
+  color: white;
+}
+#photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid gold;
+  box-shadow: 0 0 20px rgba(255,215,0,0.6);
+  margin-bottom: 15px;
+
+  opacity: 0;
+  transform: scale(0.8);
+  animation: showPhoto 2s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes showPhoto {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+#title {
+  font-size: 23px;
+  margin-bottom: 10px
+  color: white;
+}
+
+#message {
+  font-size: 18px;
+  max-width: 80%;
+  margin: auto;
+  line-height: 1.6;
+  color: white;
+}
+
+#from {
+  margin-top: 15px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn 3s ease forwards;
+  animation-delay: 8s;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* SKY BACKGROUND */
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+}
+
+/* BULAN */
+.moon {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #fff, #ddd);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255,255,255,0.8);
+  animation: floatMoon 6s ease-in-out infinite;
+}
+
+@keyframes floatMoon {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* BINTANG */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.stars::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  box-shadow:
+    50px 100px white,
+    150px 200px white,
+    300px 150px white,
+    500px 250px white,
+    700px 100px white,
+    900px 300px white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* BULAN SABIT */
+.moon {
+  position: absolute;
+  top: 45px;
+  left: 50px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #fff, #ddd);
+  border-radius: 60%;
+  box-shadow: 0 0 60px rgba(255,255,200,1);
+}
+/* AWAN FIX (PASTI KELIHATAN) */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50px;
+  z-index: 1;
+}
+
+/* bentuk awan (gumpalan) */
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+/* kiri */
+.cloud::before {
+  width: 60px;
+  height: 60px;
+  top: -20px;
+  left: 15px;
+}
+
+/* kanan */
+.cloud::after {
+  width: 80px;
+  height: 80px;
+  top: -30px;
+  right: 15px;
+}
+
+/* posisi + animasi */
+.cloud1 {
+  width: 160px;
+  height: 60px;
+  top: 120px;
+  left: -200px;
+  animation: moveCloud 25s linear infinite;
+}
+
+.cloud2 {
+  width: 220px;
+  height: 70px;
+  top: 200px;
+  left: -300px;
+  animation: moveCloud 40s linear infinite;
+  opacity: 0.7;
+}
+.cloud,
+.cloud::before,
+.cloud::after {
+  filter: blur(6px);
+}
+@keyframes moveCloud {
+  from { transform: translateX(0); }
+  to { transform: translateX(120vw); }
+}
+/* MASJID SILUET */
+.mosque {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 180px;
+  background: #111;
+  clip-path: polygon(
+    0% 100%, 0% 60%, 10% 60%, 15% 40%, 20% 60%, 
+    30% 60%, 35% 30%, 40% 60%, 50% 60%, 
+    55% 45%, 60% 60%, 70% 60%, 75% 35%, 
+    80% 60%, 90% 60%, 100% 60%, 100% 100%
+  );
+/* KUBAH */
+.mosque::before {
+  content: "";
+  position: absolute;
+  bottom: 100px;
+  left: 40%;
+  width: 120px;
+  height: 80px;
+  background: #222;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* MENARA */
+.mosque::after {
+  content: "";
+  position: absolute;
+  bottom: 100px;
+  left: 70%;
+  width: 40px;
+  height: 120px;
+  background: #222;
+  border-radius: 10px 10px 0 0;
+}
+
+/* LAMPU MASJID */
+.mosque div {
+  position: absolute;
+  bottom: 30px;
+  width: 10px;
+  height: 20px;
+  background: gold;
+  left: 20%;
+  animation: glowLamp 2s infinite alternate;
+}
+
+@keyframes glowLamp {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
